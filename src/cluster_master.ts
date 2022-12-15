@@ -60,6 +60,7 @@ export default class Master {
     dataDir,
     pruneBlocks,
     blockHeight,
+    toBlock = 0,
     mempool = 0,
     blocks = 0,
     DEBUG_LOG,
