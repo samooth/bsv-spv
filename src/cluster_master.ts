@@ -28,6 +28,7 @@ export interface MasterOptions {
   dataDir: string;
   pruneBlocks: number;
   blockHeight: number;
+  toBlock?: number;
   DEBUG_LOG?: boolean;
   DEBUG_MEMORY?: boolean;
 }
@@ -105,6 +106,7 @@ export default class Master {
       dataDir,
       pruneBlocks,
       blockHeight,
+      toBlock,
       autoReconnectWait: 100,
       DEBUG_LOG,
       DEBUG_MEMORY,
