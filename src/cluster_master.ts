@@ -110,7 +110,7 @@ export default class Master {
       DEBUG_MEMORY,
     };
     let toBlock:number;
-    if (typeof blockHeight!=="undefined"){ toBlock=blockHeight;}else{toBlock=block;}
+    if (typeof blockHeight!=="undefined"){ toBlock=blockHeight;}else{toBlock=blocks;}
     for (let i = 0; i < toBlock; i++) {
       let node = this.getNextNode("block");
       let worker = cluster.fork();
