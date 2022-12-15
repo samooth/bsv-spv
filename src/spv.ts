@@ -81,6 +81,7 @@ export default class Spv extends EventEmitter {
     invalidBlocks = [],
     pruneBlocks = 0, // Maximum number of new blocks to keep. 0 for keeping all blocks
     blockHeight = -10, // Number. Lowest block height syncBlocks will sync to
+    toBlock = 0,
     DEBUG_LOG = false,
   }: SpvOptions) {
     super();
