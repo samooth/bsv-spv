@@ -117,8 +117,9 @@ export default class Master {
       DEBUG_LOG,
       DEBUG_MEMORY,
     };
-
-    for (let i = 0; i < blocks; i++) {
+    let toBlock:number;
+    if (typeof blockHeight!=="undefined"){ toBlock=blockHeight;}else{toBlock=block;}
+    for (let i = 0; i < toBlock; i++) {
       let node = this.getNextNode("block");
       let worker = cluster.fork();
       worker.on("message", async (data) => {
