@@ -27,6 +27,7 @@ export interface SpvOptions {
   invalidBlocks?: string[];
   pruneBlocks?: number;
   blockHeight?: number;
+  toBlock?: number;
   DEBUG_LOG?: boolean;
   DEBUG_MEMORY?: boolean;
 }
