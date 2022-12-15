@@ -41,6 +41,7 @@ export default class Spv extends EventEmitter {
   saveMempool: boolean;
   pruneBlocks: number;
   blockHeight: number;
+  toBlock: number;
   forceUserAgent?: string;
   autoReconnect: boolean;
   autoReconnectWait?: number;
@@ -98,6 +99,7 @@ export default class Spv extends EventEmitter {
     this.timeoutConnect = timeoutConnect;
     this.DEBUG_LOG = DEBUG_LOG;
     this.connecting = false;
+    this.toBlock = 0;
     this.ticker = ticker;
     this.node = node;
     this.mempool = mempool;
@@ -600,7 +602,7 @@ export default class Spv extends EventEmitter {
     if (this.syncingBlocks) return blocksDled;
     this.syncingBlocks = true;
 
-    let tipHeight = this.headers.getHeight();
+    let tipHeight = this.toBlock || this.headers.getHeight();
     if (typeof this.blockHeight !== "number") {
       this.blockHeight = tipHeight + 1;
     } else if (this.blockHeight < 0) {
@@ -612,7 +614,7 @@ export default class Spv extends EventEmitter {
         const hash = this.headers.getHash(height);
         const blockDownloaded = await this.downloadBlock({ height, hash });
         if (blockDownloaded) blocksDled++;
-        tipHeight = this.headers.getHeight();
+        tipHeight = this.toBlock || this.headers.getHeight();
       } catch (err: any) {
         if (!this.isConnected()) break;
         const RETRY = 3;
